@@ -6,3 +6,14 @@ export const Title = css`
   font-size: 24px;
   line-height: 100%;
 `;
+
+export const TitleSmall = css`
+  ${Title}
+  font-size: 18px;
+`;
+
+export const Text = css`
+  ${({ theme }) => `font-family: ${theme.typography.fontFamily.secondary};`}
+  font-size: 14px;
+  line-height: 125%;
+`;

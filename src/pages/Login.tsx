@@ -13,7 +13,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Button } from "@src/components/atoms/button/Button";
+import { Button } from "@src/components/atoms/button";
 import { personCircle } from "ionicons/icons";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";

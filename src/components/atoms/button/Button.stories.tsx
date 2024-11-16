@@ -2,7 +2,7 @@ import { ReactComponent as Logo } from "@src/components/icons/material-symbols_l
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Button, BUTTON_KINDS, BUTTON_SIZES } from "./Button";
+import { Button, BUTTON_KINDS, BUTTON_SIZES } from ".";
 
 const meta = {
   title: "Atoms/Button",

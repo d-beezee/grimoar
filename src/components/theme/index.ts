@@ -9,6 +9,7 @@ const theme = {
   typography: {
     fontFamily: {
       primary: '"Afacad", sans-serif',
+      secondary: '"Abel", sans-serif',
     },
     fontColor: {
       primary: "#130065",
