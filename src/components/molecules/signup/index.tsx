@@ -5,6 +5,8 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const H1 = styled.h1`
+  margin: 0;
+  text-align: center;
   ${Title}
 `;
 const Wrapper = styled.div`
