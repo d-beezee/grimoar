@@ -19,6 +19,12 @@ export const Base: Story = {
   args: {},
 };
 
+export const Password: Story = {
+  args: {
+    type: "password",
+  },
+};
+
 export const Invalid: Story = {
   args: {
     isInvalid: true,

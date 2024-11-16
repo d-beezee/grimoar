@@ -1,4 +1,7 @@
+import { ReactComponent as EyeIcon } from "@src/components/icons/octicon_eye-24.svg";
+import { ReactComponent as EyeClosedIcon } from "@src/components/icons/octicon_eye-closed-24.svg";
 import { Text, TitleSmall } from "@src/components/typography";
+import { useState } from "react";
 import styled, { useTheme } from "styled-components";
 
 export interface InputProps
@@ -20,30 +23,71 @@ const StyledInput = styled.input<{ color: string }>`
   }
 `;
 
+const PasswordWrapper = styled.div`
+  position: relative;
+
+  ${StyledInput} {
+    padding-right: 40px;
+  }
+
+  .icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 100%;
+    display: flex;
+    top: 0;
+    align-items: center;
+  }
+`;
+
 const Label = styled.span`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   .title {
     display: block;
     ${TitleSmall}
   }
 `;
 
-export const Input = ({ isInvalid, label, ...props }: InputProps) => {
+const TextInput = ({ ...props }: InputProps & { color: string }) => {
+  return <StyledInput {...props} type="text" />;
+};
+
+const PasswordInput = ({ ...props }: InputProps & { color: string }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  return (
+    <PasswordWrapper>
+      <StyledInput {...props} type={showPassword ? "text" : "password"} />
+      <span className="icon" onClick={() => setShowPassword(!showPassword)}>
+        {showPassword ? <EyeClosedIcon /> : <EyeIcon />}
+      </span>
+    </PasswordWrapper>
+  );
+};
+
+const InputComponent = ({ isInvalid, label, type, ...props }: InputProps) => {
   const theme = useTheme();
   const color = isInvalid ? theme.colors.danger : theme.colors.secondary;
 
-  const input = <StyledInput color={color} {...props} />;
+  if (type === "password") {
+    return <PasswordInput color={color} {...props} />;
+  }
 
+  return <TextInput color={color} {...props} />;
+};
+
+export const Input = ({ label, ...props }: InputProps) => {
   if (label) {
     return (
       <Label>
         <span className="title">{label}</span>
-        {input}
+        <InputComponent {...props} />
       </Label>
     );
   }
 
-  return input;
+  return <InputComponent {...props} />;
 };
