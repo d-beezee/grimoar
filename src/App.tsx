@@ -33,7 +33,9 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
+import { theme } from "@src/components/theme";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
 import LoggedIn from "./components/LoggedIn";
 import NotLoggedIn from "./components/NotLoggedIn";
 import { store } from "./store";
@@ -42,41 +44,43 @@ import "./theme/variables.css";
 setupIonicReact();
 
 const App: React.FC = () => (
-  <Provider store={store}>
-    <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route
-            path="/login"
-            component={(props: any) => (
-              <NotLoggedIn>
-                <Login {...props} />
-              </NotLoggedIn>
-            )}
-            exact={true}
-          />
-          <Route
-            path="/signup"
-            component={(props: any) => (
-              <NotLoggedIn>
-                <Signup {...props} />
-              </NotLoggedIn>
-            )}
-            exact={true}
-          />
-          <Route
-            path="/dashboard"
-            component={(props: any) => (
-              <LoggedIn>
-                <Dashboard {...props} />
-              </LoggedIn>
-            )}
-            exact={true}
-          />
-          <Route exact path="/" render={() => <Redirect to="/login" />} />
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </IonApp>
-  </Provider>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <IonApp>
+        <IonReactRouter>
+          <IonRouterOutlet>
+            <Route
+              path="/login"
+              component={(props: any) => (
+                <NotLoggedIn>
+                  <Login {...props} />
+                </NotLoggedIn>
+              )}
+              exact={true}
+            />
+            <Route
+              path="/signup"
+              component={(props: any) => (
+                <NotLoggedIn>
+                  <Signup {...props} />
+                </NotLoggedIn>
+              )}
+              exact={true}
+            />
+            <Route
+              path="/dashboard"
+              component={(props: any) => (
+                <LoggedIn>
+                  <Dashboard {...props} />
+                </LoggedIn>
+              )}
+              exact={true}
+            />
+            <Route exact path="/" render={() => <Redirect to="/login" />} />
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </IonApp>
+    </Provider>
+  </ThemeProvider>
 );
 export default App;

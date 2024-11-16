@@ -1,6 +1,5 @@
 import {
   IonAlert,
-  IonButton,
   IonCol,
   IonContent,
   IonGrid,
@@ -14,6 +13,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { Button } from "@src/components/atoms/button/Button";
 import { personCircle } from "ionicons/icons";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -128,9 +128,9 @@ const Login: React.FC = () => {
                 <p style={{ fontSize: "small" }}>
                   By clicking LOGIN you agree to our <a href="#">Policy</a>
                 </p>
-                <IonButton expand="block" onClick={handleLogin}>
+                <Button kind="primary" onClick={handleLogin}>
                   Login
-                </IonButton>
+                </Button>
                 <p style={{ fontSize: "medium" }}>
                   Don't have an account? <a href="/signup">Sign up!</a>
                 </p>
