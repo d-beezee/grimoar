@@ -11,7 +11,8 @@
     "lint": "eslint",
     "generate-api": "API_URL=https://grimoar-api.vercel.app/reference npx @rtk-query/codegen-openapi src/features/api/config.ts",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "run:android": "ionic capacitor run android -l --external"
   },
   "dependencies": {
     "@capacitor/android": "6.1.2",

@@ -11,7 +11,8 @@ export interface InputProps
 }
 
 const StyledInput = styled.input<{ color: string }>`
-  padding: 6px 12px;
+  padding: 0px 12px;
+  min-height: 44px;
   border-radius: 12px;
   border: 1px solid ${({ color }) => color};
   width: 100%;
