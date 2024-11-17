@@ -14,6 +14,8 @@ const StyledInput = styled.input<{ color: string }>`
   padding: 6px 12px;
   border-radius: 12px;
   border: 1px solid ${({ color }) => color};
+  width: 100%;
+  background-color: transparent;
   ${Text}
 
   &:focus {
@@ -25,6 +27,7 @@ const StyledInput = styled.input<{ color: string }>`
 
 const PasswordWrapper = styled.div`
   position: relative;
+  display: flex;
 
   ${StyledInput} {
     padding-right: 40px;

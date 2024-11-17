@@ -4,19 +4,13 @@ import {
   IonContent,
   IonGrid,
   IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
   IonPage,
   IonRow,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Button } from "@src/components/atoms/button";
-import { personCircle } from "ionicons/icons";
+import { Signin } from "@src/components/molecules/signin";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import NotLoggedIn from "../components/NotLoggedIn";
 import { usePostAuthPasswordMutation } from "../features/api";
 
@@ -26,13 +20,10 @@ function validateEmail(email: string) {
   return re.test(String(email).toLowerCase());
 }
 const Login: React.FC = () => {
-  const history = useHistory();
-  const [email, setEmail] = useState<string>("eve.holt@reqres.in");
-  const [password, setPassword] = useState<string>("cityslicka");
   const [iserror, setIserror] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [login] = usePostAuthPasswordMutation();
-  const handleLogin = () => {
+  const handleLogin = async (email: string, password: string) => {
     if (!email) {
       setMessage("Please enter a valid email");
       setIserror(true);
@@ -76,7 +67,7 @@ const Login: React.FC = () => {
             <IonTitle>Login</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent fullscreen className="ion-padding ion-text-center">
+        <IonContent fullscreen className="ion-padding">
           <IonGrid>
             <IonRow>
               <IonCol>
@@ -90,52 +81,8 @@ const Login: React.FC = () => {
                 />
               </IonCol>
             </IonRow>
-            <IonRow>
-              <IonCol>
-                <IonIcon
-                  style={{ fontSize: "70px", color: "#0040ff" }}
-                  icon={personCircle}
-                />
-              </IonCol>
-            </IonRow>
-            <IonRow>
-              <IonCol>
-                <IonItem>
-                  <IonLabel position="floating"> Email</IonLabel>
-                  <IonInput
-                    type="email"
-                    value={email}
-                    onIonChange={(e) => setEmail(e.detail.value!)}
-                  ></IonInput>
-                </IonItem>
-              </IonCol>
-            </IonRow>
 
-            <IonRow>
-              <IonCol>
-                <IonItem>
-                  <IonLabel position="floating"> Password</IonLabel>
-                  <IonInput
-                    type="password"
-                    value={password}
-                    onIonChange={(e) => setPassword(e.detail.value!)}
-                  ></IonInput>
-                </IonItem>
-              </IonCol>
-            </IonRow>
-            <IonRow>
-              <IonCol>
-                <p style={{ fontSize: "small" }}>
-                  By clicking LOGIN you agree to our <a href="#">Policy</a>
-                </p>
-                <Button kind="primary" onClick={handleLogin}>
-                  Login
-                </Button>
-                <p style={{ fontSize: "medium" }}>
-                  Don't have an account? <a href="/signup">Sign up!</a>
-                </p>
-              </IonCol>
-            </IonRow>
+            <Signin onSignin={handleLogin} />
           </IonGrid>
         </IonContent>
       </IonPage>

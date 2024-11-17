@@ -71,7 +71,7 @@ export const Signin = ({
           size="small"
           onClick={() => onSignin && onSignin(email, password)}
         >
-          Signup
+          Sign In
         </Button>
       </div>
     </Container>
