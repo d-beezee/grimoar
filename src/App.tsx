@@ -38,6 +38,7 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import LoggedIn from "./components/LoggedIn";
 import NotLoggedIn from "./components/NotLoggedIn";
+import Home from "./pages/Home";
 import { store } from "./store";
 import "./theme/variables.css";
 
@@ -76,7 +77,16 @@ const App: React.FC = () => (
               )}
               exact={true}
             />
-            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route
+              path="/home"
+              component={(props: any) => (
+                <NotLoggedIn>
+                  <Home {...props} />
+                </NotLoggedIn>
+              )}
+              exact={true}
+            />
+            <Route exact path="/" render={() => <Redirect to="/home" />} />
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>

@@ -1,18 +1,10 @@
-import {
-  IonAlert,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonPage,
-  IonRow,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
+import { IonAlert, IonImg, IonPage } from "@ionic/react";
 import { Signin } from "@src/components/molecules/signin";
+import { LogPage } from "@src/components/templates/LogPage";
 import React, { useState } from "react";
-import NotLoggedIn from "../components/NotLoggedIn";
-import { usePostAuthPasswordMutation } from "../features/api";
+import NotLoggedIn from "../../components/NotLoggedIn";
+import { usePostAuthPasswordMutation } from "../../features/api";
+import Image from "./assets/Image.jpg";
 
 function validateEmail(email: string) {
   const re =
@@ -62,29 +54,24 @@ const Login: React.FC = () => {
   return (
     <NotLoggedIn>
       <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Login</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent fullscreen className="ion-padding">
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonAlert
-                  isOpen={iserror}
-                  onDidDismiss={() => setIserror(false)}
-                  cssClass="my-custom-class"
-                  header={"Error!"}
-                  message={message}
-                  buttons={["Dismiss"]}
-                />
-              </IonCol>
-            </IonRow>
-
-            <Signin onSignin={handleLogin} />
-          </IonGrid>
-        </IonContent>
+        <LogPage>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+          >
+            <IonAlert
+              isOpen={iserror}
+              onDidDismiss={() => setIserror(false)}
+              cssClass="my-custom-class"
+              header={"Error!"}
+              message={message}
+              buttons={["Dismiss"]}
+            />
+            <IonImg src={Image} />
+            <div style={{ padding: "0 30px" }}>
+              <Signin onSignin={handleLogin} />
+            </div>
+          </div>
+        </LogPage>
       </IonPage>
     </NotLoggedIn>
   );

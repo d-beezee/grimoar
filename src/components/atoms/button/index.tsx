@@ -46,13 +46,13 @@ const StyledButton = styled.button<ButtonProps>`
       case "small":
         return `
           padding: 6px 20px ;
-          ${icon ? `padding-right: 40px;` : ``}
+          ${icon ? `padding-right: 40px;padding-left: 40px;` : ``}
           border-radius: 12px;
           `;
       case "medium":
         return `
           padding: 16px 20px;
-          ${icon ? `padding-right: 40px;` : ``}
+          ${icon ? `padding-right: 40px;padding-left: 40px;` : ``}
           border-radius: 20px;
         `;
     }
