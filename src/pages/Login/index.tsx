@@ -1,10 +1,11 @@
-import { IonAlert, IonImg, IonPage } from "@ionic/react";
+import { IonAlert, IonButton, IonImg, IonPage } from "@ionic/react";
 import { Signin } from "@src/components/molecules/signin";
 import { LogPage } from "@src/components/templates/LogPage";
 import React, { useState } from "react";
 import NotLoggedIn from "../../components/NotLoggedIn";
 import { usePostAuthPasswordMutation } from "../../features/api";
 import Image from "./assets/Image.jpg";
+import { useGoogleLogin } from "./googleLogin";
 
 function validateEmail(email: string) {
   const re =
@@ -12,9 +13,11 @@ function validateEmail(email: string) {
   return re.test(String(email).toLowerCase());
 }
 const Login: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [iserror, setIserror] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [login] = usePostAuthPasswordMutation();
+  const { loginWithGoogle } = useGoogleLogin();
   const handleLogin = async (email: string, password: string) => {
     if (!email) {
       setMessage("Please enter a valid email");
@@ -38,6 +41,7 @@ const Login: React.FC = () => {
       password: password,
     };
 
+    setIsSubmitting(true);
     login({ body: loginData })
       .unwrap()
       .then((res) => {
@@ -48,6 +52,9 @@ const Login: React.FC = () => {
         console.log(error);
         setMessage("Auth failure! Please create an account");
         setIserror(true);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -68,7 +75,14 @@ const Login: React.FC = () => {
             />
             <IonImg src={Image} />
             <div style={{ padding: "0 30px" }}>
-              <Signin onSignin={handleLogin} />
+              <IonButton
+                onClick={() => {
+                  loginWithGoogle();
+                }}
+              >
+                Login with Google
+              </IonButton>
+              <Signin disabled={isSubmitting} onSignin={handleLogin} />
             </div>
           </div>
         </LogPage>

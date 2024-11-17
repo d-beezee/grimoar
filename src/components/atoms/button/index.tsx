@@ -22,6 +22,7 @@ const StyledButton = styled.button<ButtonProps>`
   border: 0;
   border-radius: 3em;
   width: 100%;
+  ${({ disabled }) => (disabled ? `opacity: 0.5;cursor:not-allowed; ` : ``)}
   ${Title};
   ${({ icon }) => (icon ? `position:relative;` : ``)}
 

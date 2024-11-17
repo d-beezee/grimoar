@@ -37,12 +37,13 @@ const ForgotPasswordWrapper = styled.div`
 export interface SigninProps {
   onSignin?: (email: string, password: string) => Promise<void>;
   onForgotPassword?: (email: string) => void;
+  disabled?: boolean;
 }
 
 export const Signin = ({
   onSignin,
   onForgotPassword,
-  ...props
+  disabled,
 }: SigninProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,6 +70,7 @@ export const Signin = ({
         <Button
           kind="secondary"
           size="small"
+          disabled={disabled}
           onClick={() => onSignin && onSignin(email, password)}
         >
           Sign In

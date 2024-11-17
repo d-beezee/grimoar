@@ -17,9 +17,10 @@ const Wrapper = styled.div`
 
 export interface SignupProps {
   onSignup?: (email: string, password: string) => Promise<void>;
+  disabled?: boolean;
 }
 
-export const Signup = ({ onSignup, ...props }: SignupProps) => {
+export const Signup = ({ onSignup, disabled }: SignupProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,6 +37,7 @@ export const Signup = ({ onSignup, ...props }: SignupProps) => {
         <Button
           kind="secondary"
           size="small"
+          disabled={disabled}
           onClick={() => onSignup && onSignup(email, password)}
         >
           Signup

@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "io.ionic.starter",
-  appName: "Auth",
+  appId: "com.clochard.grimoar",
+  appName: "Grimoar",
   webDir: "dist",
 };
 

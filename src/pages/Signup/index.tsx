@@ -2,7 +2,6 @@ import { IonAlert, IonImg, IonPage } from "@ionic/react";
 import { Signup as SignupForm } from "@src/components/molecules/signup";
 import { LogPage } from "@src/components/templates/LogPage";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import NotLoggedIn from "../../components/NotLoggedIn";
 import { usePostRegisterMutation } from "../../features/api";
 import Image from "./assets/Image.jpg";
@@ -13,7 +12,7 @@ function validateEmail(email: string) {
   return re.test(String(email).toLowerCase());
 }
 const Signup: React.FC = () => {
-  const history = useHistory();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [iserror, setIserror] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [register] = usePostRegisterMutation();
@@ -40,17 +39,20 @@ const Signup: React.FC = () => {
       password: password,
     };
 
+    setIsSubmitting(true);
     register({ body: loginData })
       .unwrap()
       .then((res) => {
-        console.log(res);
         res.token && localStorage.setItem("token", res.token);
-        history.push("/dashboard");
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
         setMessage("Auth failure! Please create an account");
         setIserror(true);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -70,7 +72,7 @@ const Signup: React.FC = () => {
             />
             <IonImg src={Image} />
             <div style={{ padding: "0 30px" }}>
-              <SignupForm onSignup={handleLogin} />
+              <SignupForm disabled={isSubmitting} onSignup={handleLogin} />
             </div>
           </div>
         </LogPage>

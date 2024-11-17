@@ -67,3 +67,9 @@ export const SmallWithIcon: Story = {
     icon: <Logo style={{ width: "100%" }} />,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};

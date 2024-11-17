@@ -21,6 +21,7 @@
     "@capacitor/haptics": "6.0.1",
     "@capacitor/keyboard": "6.0.2",
     "@capacitor/status-bar": "6.0.1",
+    "@capgo/capacitor-social-login": "0.0.68-alpha.2",
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
     "@reduxjs/toolkit": "^2.3.0",

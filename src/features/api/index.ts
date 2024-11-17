@@ -17,6 +17,16 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    postAuthGoogle: build.mutation<
+      PostAuthGoogleApiResponse,
+      PostAuthGoogleApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/auth/google`,
+        method: "POST",
+        body: queryArg.body,
+      }),
+    }),
     getRefresh: build.query<GetRefreshApiResponse, GetRefreshApiArg>({
       query: () => ({ url: `/refresh` }),
     }),
@@ -50,6 +60,14 @@ export type PostAuthPasswordApiArg = {
     password: string;
   };
 };
+export type PostAuthGoogleApiResponse = /** status 200 OK */ {
+  token: string;
+};
+export type PostAuthGoogleApiArg = {
+  body: {
+    accessToken: string;
+  };
+};
 export type GetRefreshApiResponse = /** status 200 OK */ {
   token?: string;
 };
@@ -68,6 +86,7 @@ export const {
   use$getQuery,
   useGetProtectedQuery,
   usePostAuthPasswordMutation,
+  usePostAuthGoogleMutation,
   useGetRefreshQuery,
   usePostRegisterMutation,
 } = injectedRtkApi;
