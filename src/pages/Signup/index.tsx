@@ -42,10 +42,6 @@ const Signup: React.FC = () => {
     setIsSubmitting(true);
     register({ body: loginData })
       .unwrap()
-      .then((res) => {
-        res.token && localStorage.setItem("token", res.token);
-        window.location.reload();
-      })
       .catch((error) => {
         console.log(error);
         setMessage("Auth failure! Please create an account");

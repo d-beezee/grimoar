@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { RootState } from "@src/storeTypes";
 import { stringify } from "qs";
 
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://grimoar-api.vercel.app",
-    prepareHeaders: (headers) => {
-      if (localStorage.getItem("token")) {
-        headers.set("Authorization", `Bearer ${localStorage.getItem("token")}`);
-      } else {
-        headers.set("Authorization", "Bearer invalid");
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.token;
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
     },

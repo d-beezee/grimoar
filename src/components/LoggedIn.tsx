@@ -1,17 +1,13 @@
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import useLoggedIn from "../hook/useLoggedIn";
+import { RootState } from "@src/storeTypes";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const LoggedIn = ({ children }: { children: React.ReactNode }) => {
-  const isLoggedIn = useLoggedIn();
-  const history = useHistory();
-  useEffect(() => {
-    if (!isLoggedIn) {
-      history.push("/login");
-    }
-  }, [isLoggedIn]);
-
-  return <>{children}</>;
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated,
+  );
+  return isAuthenticated ? <>{children}</> : <Redirect to="/home" />;
 };
 
 export default LoggedIn;
