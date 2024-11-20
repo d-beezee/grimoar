@@ -17,6 +17,18 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    postAuthVerify: build.mutation<
+      PostAuthVerifyApiResponse,
+      PostAuthVerifyApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/auth/verify`,
+        method: "POST",
+        cookies: {
+          auth: queryArg.auth,
+        },
+      }),
+    }),
     postAuthGoogle: build.mutation<
       PostAuthGoogleApiResponse,
       PostAuthGoogleApiArg
@@ -60,6 +72,13 @@ export type PostAuthPasswordApiArg = {
     password: string;
   };
 };
+export type PostAuthVerifyApiResponse = /** status 200 OK */ {
+  token: string;
+  message?: string;
+};
+export type PostAuthVerifyApiArg = {
+  auth: string;
+};
 export type PostAuthGoogleApiResponse = /** status 200 OK */ {
   token: string;
 };
@@ -72,7 +91,7 @@ export type GetRefreshApiResponse = /** status 200 OK */ {
   token?: string;
 };
 export type GetRefreshApiArg = void;
-export type PostRegisterApiResponse = /** status 200 OK */ {
+export type PostRegisterApiResponse = /** status 201 Created */ {
   token: string;
   message: string;
 };
@@ -86,6 +105,7 @@ export const {
   use$getQuery,
   useGetProtectedQuery,
   usePostAuthPasswordMutation,
+  usePostAuthVerifyMutation,
   usePostAuthGoogleMutation,
   useGetRefreshQuery,
   usePostRegisterMutation,
