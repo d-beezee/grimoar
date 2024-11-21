@@ -5,6 +5,7 @@ const theme = {
     info: "#407BFF",
     danger: "#FF543C",
     accent: "#D88373",
+    grey600: "#A3A3A3",
   },
   typography: {
     fontFamily: {

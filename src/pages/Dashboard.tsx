@@ -1,50 +1,50 @@
-import {
-  IonButton,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonItemDivider,
-  IonPage,
-  IonRow,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
+import { IonPage } from "@ionic/react";
+import { MovieCard } from "@src/components/molecules/moviecard";
+import { MainPage } from "@src/components/templates/MainPage";
+import { Title } from "@src/components/typography";
 import React from "react";
-import { useGetProtectedQuery } from "../features/api";
+import styled from "styled-components";
+import { useGetGamesQuery } from "../features/api";
+
+const MovieCardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey600};
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+const TitleWrapper = styled.h1`
+  ${Title};
+  color: #fff;
+  margin: 0;
+`;
 
 const Dashboard: React.FC = () => {
-  const { data, isLoading, isError, error } = useGetProtectedQuery();
+  const { data, isLoading, isError, error } = useGetGamesQuery();
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Dashboard</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen className="ion-padding ion-text-center">
-        {isLoading && <div>Loading...</div>}
-        {isError && <div>{JSON.stringify(error)}</div>}
-        {!isLoading && !isError && (
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <h4>Welcome {JSON.stringify(data)}</h4>
-                <IonItemDivider></IonItemDivider>
-                <IonButton
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    window.location.reload();
-                  }}
-                >
-                  Logout
-                </IonButton>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        )}
-      </IonContent>
+      <MainPage>
+        <TitleWrapper>Popular this week</TitleWrapper>
+
+        <div style={{ color: "white" }}>
+          {isLoading && <div>Loading...</div>}
+          {isError && <div>{JSON.stringify(error)}</div>}
+          {!isLoading &&
+            !isError &&
+            data &&
+            data.length > 0 &&
+            data.map((game) => (
+              <MovieCardWrapper key={game.name}>
+                <MovieCard movie={game} />
+              </MovieCardWrapper>
+            ))}
+        </div>
+      </MainPage>
     </IonPage>
   );
 };

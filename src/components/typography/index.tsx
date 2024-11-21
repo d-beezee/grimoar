@@ -17,3 +17,10 @@ export const Text = css`
   font-size: 14px;
   line-height: 125%;
 `;
+
+export const Info = css`
+  ${({ theme }) => `font-family: ${theme.typography.fontFamily.primary};`}
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 100%;
+`;

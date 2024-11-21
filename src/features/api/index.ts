@@ -2,7 +2,7 @@ import { apiSlice as api } from "./api";
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
     $get: build.query<$getApiResponse, $getApiArg>({
-      query: (queryArg) => ({ url: `/`, body: queryArg.body }),
+      query: () => ({ url: `/` }),
     }),
     getProtected: build.query<GetProtectedApiResponse, GetProtectedApiArg>({
       query: () => ({ url: `/protected` }),
@@ -49,6 +49,9 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.body,
       }),
     }),
+    getGames: build.query<GetGamesApiResponse, GetGamesApiArg>({
+      query: () => ({ url: `/games` }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -56,9 +59,7 @@ export { injectedRtkApi as api };
 export type $getApiResponse = /** status 200 OK */ {
   message: string;
 };
-export type $getApiArg = {
-  body: string;
-};
+export type $getApiArg = void;
 export type GetProtectedApiResponse = /** status 200 OK */ {
   message?: string;
 };
@@ -101,6 +102,14 @@ export type PostRegisterApiArg = {
     password: string;
   };
 };
+export type GetGamesApiResponse = /** status 200 OK */ {
+  name: string;
+  description: string;
+  year: number;
+  image: string;
+  vote?: number;
+}[];
+export type GetGamesApiArg = void;
 export const {
   use$getQuery,
   useGetProtectedQuery,
@@ -109,4 +118,5 @@ export const {
   usePostAuthGoogleMutation,
   useGetRefreshQuery,
   usePostRegisterMutation,
+  useGetGamesQuery,
 } = injectedRtkApi;
