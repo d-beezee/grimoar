@@ -3,7 +3,7 @@ run-name: Creating Unsigned Android App 🚀
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
     
 
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
         with:
-          ref: master
+          ref: main
 
       - name: Setup java
         uses: actions/setup-java@v3
