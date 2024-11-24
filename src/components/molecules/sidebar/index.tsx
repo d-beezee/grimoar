@@ -22,12 +22,11 @@ const Wrapper = styled.div<{ isOpen: boolean }>`
 const Menu = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 32px;
+  gap: 30px;
 `;
 
 const Logo = styled.img`
-  width: 100px;
+  width: 180px;
   margin: 0 auto;
   position: absolute;
   bottom: 32px;
@@ -40,12 +39,23 @@ Logo.defaultProps = {
   alt: "logo",
 };
 
+type Item = {
+  key: string;
+  icon: string;
+  name: string;
+  onClick: () => void;
+};
+
 const Sidebar = ({
   isOpen,
   setIsOpen,
+  user: { name, avatar },
+  items,
 }: {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
+  user: { name: string; avatar: string };
+  items: Item[];
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const handleClickOutside = (event: MouseEvent) => {
@@ -65,12 +75,16 @@ const Sidebar = ({
   }, []);
   return (
     <Wrapper ref={wrapperRef} slot="fixed" isOpen={isOpen}>
-      <Avatar src="https://place-hold.it/100x100" size="large">
-        james
+      <Avatar src={avatar} size="large">
+        {name}
       </Avatar>
 
       <Menu>
-        <MenuItem icon="🏠">Home</MenuItem>
+        {items.map((item) => (
+          <MenuItem key={item.key} icon={item.icon} onClick={item.onClick}>
+            {item.name}
+          </MenuItem>
+        ))}
       </Menu>
 
       <Logo />

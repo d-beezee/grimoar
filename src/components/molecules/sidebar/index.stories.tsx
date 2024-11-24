@@ -9,6 +9,27 @@ const meta = {
 
   args: {
     setIsOpen: fn(),
+    user: { name: "james", avatar: "https://place-hold.it/100x100" },
+    items: [
+      {
+        key: "1",
+        icon: "🏠",
+        name: "Home",
+        onClick: () => {},
+      },
+      {
+        key: "2",
+        icon: "📦",
+        name: "Products",
+        onClick: () => {},
+      },
+      {
+        key: "3",
+        icon: "🛒",
+        name: "Cart",
+        onClick: () => {},
+      },
+    ],
   },
 } satisfies Meta<typeof Sidebar>;
 
