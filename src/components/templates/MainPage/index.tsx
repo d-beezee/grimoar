@@ -22,6 +22,7 @@ const Header = styled.div`
   padding: 30px 20px 8px 20px;
 
   .topbar {
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
