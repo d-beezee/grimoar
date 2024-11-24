@@ -1,3 +1,4 @@
+import { ReactComponent as ProfileIcon } from "@src/components/icons/face.svg";
 import { ReactComponent as SignoutIcon } from "@src/components/icons/signout.svg";
 import { Sidebar as SidebarComponent } from "@src/components/molecules/sidebar";
 import { clearToken } from "@src/features/slices/auth";
@@ -23,19 +24,11 @@ const Sidebar = ({
       setIsOpen={setIsOpen}
       items={[
         {
-          key: "1",
-          icon: "🏠",
-          name: "Home",
+          key: "profile",
+          icon: <ProfileIcon />,
+          name: "Profile",
           onClick: () => {
-            alert("Home");
-          },
-        },
-        {
-          key: "2",
-          icon: "📦",
-          name: "Products",
-          onClick: () => {
-            alert("Products");
+            alert("Sorry, not implemented yet");
           },
         },
         {

@@ -32,7 +32,7 @@ const ForgotPasswordWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  ${({ theme }) => `${TitleSmall(theme)}`}
+  ${({ theme }) => TitleSmall(theme)}
   cursor: pointer;
 `;
 

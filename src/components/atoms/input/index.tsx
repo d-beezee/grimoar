@@ -17,7 +17,7 @@ const StyledInput = styled.input<{ color: string }>`
   border: 1px solid ${({ color }) => color};
   width: 100%;
   background-color: transparent;
-  ${({ theme }) => `${Text(theme)}`}
+  ${({ theme }) => Text(theme)}
 
   &:focus {
     outline: none;

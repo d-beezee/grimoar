@@ -18,7 +18,7 @@ const MovieCardWrapper = styled.div`
 `;
 
 const TitleWrapper = styled.h1`
-  ${({ theme }) => `${Title(theme)}`}
+  ${({ theme }) => Title(theme)}
   color: #fff;
   margin: 0;
 `;
@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <IonPage>
-      <MainPage>
+      <MainPage title="Games">
         <TitleWrapper>Popular this week</TitleWrapper>
 
         <div style={{ color: "white" }}>

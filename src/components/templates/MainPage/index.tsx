@@ -29,7 +29,13 @@ const Header = styled.div`
   }
 `;
 
-export const MainPage = ({ children }: { children: React.ReactNode }) => {
+export const MainPage = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => {
   const [isOpen, setIsOpen] = useState(true);
   return (
     <IonContent fullscreen className="ion-padding">
@@ -41,7 +47,7 @@ export const MainPage = ({ children }: { children: React.ReactNode }) => {
       <Header slot="fixed">
         <div className="topbar">
           <BarMenu onClick={() => setIsOpen(!isOpen)} />
-          <h1>Title</h1>
+          <h1>{title}</h1>
           <SearchIcon onClick={() => alert("sorry, not implemented yet")} />
         </div>
       </Header>
