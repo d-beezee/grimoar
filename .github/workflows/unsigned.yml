@@ -48,9 +48,17 @@ jobs:
         working-directory: ./android/
         run: ./gradlew bundle
 
+      - name: Check build files
+        run:
+          ls android
+          ls android/app
+          ls android/app/build
+          ls android/app/build/outputs
+          ls android/app/build/outputs/apk
+          ls android/app/build/outputs/apk/release
 
       - name: Save release bundle as artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: ./android/app/build/outputs/apk/release/*.apk
+          path: android/app/build/outputs/apk/release/*.apk
