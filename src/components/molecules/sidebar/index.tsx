@@ -1,6 +1,6 @@
 import { Avatar } from "@src/components/atoms/avatar";
 import { MenuItem } from "@src/components/atoms/menuitem";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 import LogoImage from "./assets/Logo.png";
 
@@ -58,21 +58,27 @@ const Sidebar = ({
   items: Item[];
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      wrapperRef.current &&
-      !wrapperRef.current.contains(event.target as Node)
-    ) {
-      setIsOpen(false);
-    }
-  };
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (
+        isOpen &&
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    },
+    [isOpen],
+  );
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isOpen]);
   return (
     <Wrapper ref={wrapperRef} slot="fixed" isOpen={isOpen}>
       <Avatar src={avatar} size="large">
