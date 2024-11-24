@@ -32,16 +32,16 @@ jobs:
         run: yarn
 
       - name: Build Ionic App
-        run: ionic build
+        run: npx ionic build
 
       - name: Copy Android
-        run: ionic capacitor copy android
+        run: npx ionic capacitor copy android
 
       - name: Build Android Dev APK
-        run: ionic capacitor build android
+        run: npx ionic capacitor build android
 
       - name: Build Android Release APK
-        run: ionic capacitor build android --release --prod
+        run: npx ionic capacitor build android --release --prod
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
