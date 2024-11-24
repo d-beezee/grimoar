@@ -41,7 +41,7 @@ Logo.defaultProps = {
 
 type Item = {
   key: string;
-  icon: string;
+  icon: React.ReactNode;
   name: string;
   onClick: () => void;
 };

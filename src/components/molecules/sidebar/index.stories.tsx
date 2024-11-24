@@ -1,3 +1,4 @@
+import { ReactComponent as Signout } from "@src/components/icons/signout.svg";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { fn } from "@storybook/test";
@@ -25,7 +26,7 @@ const meta = {
       },
       {
         key: "3",
-        icon: "🛒",
+        icon: <Signout />,
         name: "Cart",
         onClick: () => {},
       },

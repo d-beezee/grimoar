@@ -1,10 +1,10 @@
 import { IonContent } from "@ionic/react";
 import { ReactComponent as SearchIcon } from "@src/components/icons/ic_baseline-search.svg";
 import { ReactComponent as BarMenu } from "@src/components/icons/uil_bars.svg";
-import { Sidebar } from "@src/components/molecules/sidebar";
 import { Title } from "@src/components/typography";
 import { useState } from "react";
 import styled from "styled-components";
+import { Sidebar } from "./Sidebar";
 
 const Wrapper = styled.div`
   padding: 12px;
@@ -37,32 +37,6 @@ export const MainPage = ({ children }: { children: React.ReactNode }) => {
         user={{ name: "james", avatar: "https://place-hold.it/100x100" }}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        items={[
-          {
-            key: "1",
-            icon: "🏠",
-            name: "Home",
-            onClick: () => {
-              alert("Home");
-            },
-          },
-          {
-            key: "2",
-            icon: "📦",
-            name: "Products",
-            onClick: () => {
-              alert("Products");
-            },
-          },
-          {
-            key: "3",
-            icon: "🛒",
-            name: "Cart",
-            onClick: () => {
-              alert("Cart");
-            },
-          },
-        ]}
       />
       <Header slot="fixed">
         <div className="topbar">
