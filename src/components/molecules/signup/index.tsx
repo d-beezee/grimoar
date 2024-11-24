@@ -7,7 +7,8 @@ import styled from "styled-components";
 const H1 = styled.h1`
   margin: 0;
   text-align: center;
-  ${Title}
+
+  ${({ theme }) => Title(theme)}
 `;
 const Wrapper = styled.div`
   display: flex;

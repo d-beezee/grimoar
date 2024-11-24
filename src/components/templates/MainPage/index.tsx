@@ -1,4 +1,6 @@
 import { IonContent } from "@ionic/react";
+import { Sidebar } from "@src/components/molecules/sidebar";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -17,8 +19,10 @@ const Header = styled.div`
 `;
 
 export const MainPage = ({ children }: { children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <IonContent fullscreen className="ion-padding">
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <Header slot="fixed" />
       <Wrapper>{children}</Wrapper>
     </IonContent>

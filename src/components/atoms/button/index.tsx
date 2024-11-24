@@ -22,8 +22,8 @@ const StyledButton = styled.button<ButtonProps>`
   border: 0;
   border-radius: 3em;
   width: 100%;
-  ${({ disabled }) => (disabled ? `opacity: 0.5;cursor:not-allowed; ` : ``)}
-  ${Title};
+  ${({ disabled }) => (disabled ? `opacity: 0.5;cursor:not-allowed; ` : ``)};
+  ${({ theme }) => Title(theme)};
   ${({ icon }) => (icon ? `position:relative;` : ``)}
 
   ${({ kind, theme }) => {

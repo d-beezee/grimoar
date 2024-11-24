@@ -18,7 +18,7 @@ const MovieCardWrapper = styled.div`
 `;
 
 const TitleWrapper = styled.h1`
-  ${Title};
+  ${({ theme }) => `${Title(theme)}`}
   color: #fff;
   margin: 0;
 `;

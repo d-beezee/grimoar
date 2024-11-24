@@ -13,11 +13,11 @@ export interface MovieCardProps {
 const Title = styled.h2`
   margin: 0;
   .main {
-    ${TitleSmall};
+    ${({ theme }) => `${TitleSmall(theme)}`}
     color: #fff;
   }
   .sub {
-    ${Info};
+    ${({ theme }) => `${Info(theme)}`}
     color: ${({ theme }) => theme.typography.fontColor.secondary};
   }
 `;
@@ -36,7 +36,7 @@ const DescriptionWrapper = styled.div`
     max-width: 80px;
   }
   .description {
-    ${Text};
+    ${({ theme }) => Text(theme)};
     color: #fff;
   }
 `;

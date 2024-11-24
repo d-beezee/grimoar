@@ -17,7 +17,7 @@ const StyledInput = styled.input<{ color: string }>`
   border: 1px solid ${({ color }) => color};
   width: 100%;
   background-color: transparent;
-  ${Text}
+  ${({ theme }) => `${Text(theme)}`}
 
   &:focus {
     outline: none;
@@ -52,7 +52,7 @@ const Label = styled.span`
 
   .title {
     display: block;
-    ${TitleSmall}
+    ${({ theme }) => TitleSmall(theme)}
   }
 `;
 
