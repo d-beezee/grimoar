@@ -31,28 +31,24 @@ jobs:
       - name: install dependencies
         run: yarn
 
-      - name: Create Build Folder
-        run: yarn run build
+      - name: Build Ionic App
+        run: ionic build
 
-      - name: Capacitor update
-        run: npx cap update
+      - name: Copy Android
+        run: ionic capacitor copy android
 
-      - name: Capacitor copy
-        run: npx cap copy
-      
-      # TODO: Check for folder structure in README for generating splash screen 
-      - name: Generate icons and splash screen to android folder 
-        run:  npx capacitor-assets generate --android
-        
-      - name: Build apk
-        run: cd android && ./gradlew build
+      - name: Build Android Dev APK
+        run: ionic capacitor build android
 
-      - name: Upload apk
-        uses: actions/upload-artifact@v3
+      - name: Build Android Release APK
+        run: ionic capacitor build android --release --prod
+
+      - name: Generate the Android App Bundle
+        working-directory: ./android/
+        run: ./gradlew bundle
+
+      - name: Upload dev APK
+        uses: actions/upload-artifact@v1
         with:
-          name: unsigned-apk
-          path: ./android/app/build/outputs/apk/release/app-release-unsigned.apk
-
-      - name: Set Tag
-        id: current-datetime
-        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d-%H_%M_%S%z')" >> "$GITHUB_OUTPUT"
+          name: app-dev
+          path: apk/app-debug.apk
