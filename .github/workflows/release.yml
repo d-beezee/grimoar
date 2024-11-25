@@ -37,7 +37,7 @@ jobs:
         run: yarn
 
       - name: Create Build Folder
-        run: yarn build
+        run: npx ionic capacitor build android
 
 
       - name: Capacitor update
