@@ -33,10 +33,7 @@ jobs:
         run: yarn
 
       - name: build vite
-        run: yarn build
-
-      - name: Build Ionic App
-        run: npx cap sync
+        run: npx ionic capacitor build android
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
