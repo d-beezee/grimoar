@@ -33,7 +33,7 @@ import "@ionic/react/css/typography.css";
 // import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
-import { SocialLogin } from "@capgo/capacitor-social-login";
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
 import { theme } from "@src/components/theme";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
@@ -43,10 +43,9 @@ import Home from "./pages/Home";
 import { store } from "./store";
 import "./theme/variables.css";
 const initSocialLogin = () => {
-  SocialLogin.initialize({
-    google: {
-      webClientId: import.meta.env.VITE_GOOGLE_CLIENT_ID as string,
-    },
+  GoogleAuth.initialize({
+    clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID as string,
+    scopes: ["profile", "email"],
   });
 };
 initSocialLogin();

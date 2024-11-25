@@ -1037,11 +1037,6 @@
   resolved "https://registry.npmjs.org/@capacitor/status-bar/-/status-bar-6.0.1.tgz"
   integrity sha512-Usd9hZZQVAqy+jJfL7jRcYI7dcsxN09Na1yttwdl+F1bk3Ztoukk7CGPDm5VgKUSs53ihQBOy1+sczCACxhNiw==
 
-"@capgo/capacitor-social-login@^0.0.68":
-  version "0.0.68"
-  resolved "https://registry.npmjs.org/@capgo/capacitor-social-login/-/capacitor-social-login-0.0.68.tgz#4dccce12021f438c1e0729c896e5f44046bf6249"
-  integrity sha512-o4EV2Xl9NXUoRgMa/Q0RwOzaF76ploTkX8pt1+nhl1hHq1yg80Y3SeUNw9Jqvqa8j4lwyEgpJcm0vACYT1UzRQ==
-
 "@chromatic-com/storybook@^3.2.2":
   version "3.2.2"
   resolved "https://registry.npmjs.org/@chromatic-com/storybook/-/storybook-3.2.2.tgz"
@@ -1052,6 +1047,11 @@
     jsonfile "^6.1.0"
     react-confetti "^6.1.0"
     strip-ansi "^7.1.0"
+
+"@codetrix-studio/capacitor-google-auth@^3.4.0-rc.4":
+  version "3.4.0-rc.4"
+  resolved "https://registry.npmjs.org/@codetrix-studio/capacitor-google-auth/-/capacitor-google-auth-3.4.0-rc.4.tgz#bcc4471f7f4fdfc3d2bd5000600cd5ed4979872b"
+  integrity sha512-d548/xKrbMHHbzMYSWnlgZCLZYo2zzY7Onrh3x8ujojrb7atkNK68I6su5WgmaBt4E+R4gxBsWams4554aOFjA==
 
 "@colors/colors@1.5.0":
   version "1.5.0"
