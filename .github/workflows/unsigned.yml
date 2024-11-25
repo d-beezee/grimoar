@@ -32,6 +32,9 @@ jobs:
       - name: install dependencies
         run: yarn
 
+      - name: build vite
+        run: yarn build
+
       - name: Build Ionic App
         run: npx cap sync
 
