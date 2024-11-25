@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.clochard.grimoar;
 
 import com.getcapacitor.BridgeActivity;
 
