@@ -35,6 +35,10 @@ jobs:
       - name: build vite
         run: npx ionic capacitor build android
 
+      - name: signinReport
+        working-directory: ./android/
+        run: ./gradlew signinReport
+
       - name: Generate the Android App Bundle
         working-directory: ./android/
         run: ./gradlew build
