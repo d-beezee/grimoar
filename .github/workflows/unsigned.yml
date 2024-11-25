@@ -33,24 +33,11 @@ jobs:
         run: yarn
 
       - name: Build Ionic App
-        run: npx ionic build
-
-      - name: Copy Android
-        run: npx ionic capacitor copy android
-
-      - name: Build Android Dev APK
-        run: npx ionic capacitor build android
-
-      - name: Build Android Release APK
-        run: npx ionic capacitor build android --release --prod
+        run: npx cap sync
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
         run: ./gradlew build
-        
-      - name: Generate the Android App Bundle
-        working-directory: ./android/
-        run: ./gradlew bundle
 
       - name: Save release bundle as artifact
         uses: actions/upload-artifact@v4
