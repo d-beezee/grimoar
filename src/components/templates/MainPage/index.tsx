@@ -37,7 +37,8 @@ export const MainPage = ({
   title: string;
   children: React.ReactNode;
 }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <IonContent fullscreen className="ion-padding">
       <Sidebar
