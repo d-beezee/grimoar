@@ -6,8 +6,6 @@ export const useGoogleLogin = () => {
 
   const loginWithGoogle = async () => {
     const google = await FirebaseAuthentication.signInWithGoogle();
-    // await GoogleAuth.signIn();
-    // const google = await GoogleAuth.refresh();
     if (google && google.credential && google.credential.accessToken) {
       const res = await login({
         body: { accessToken: google.credential.accessToken },
