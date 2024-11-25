@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "733413672934-v50edk1bfv54dijgnijk6g9lic8etchs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clochard.grimoar",
+            "certificate_hash": "7849e9b7fc920eeebac8bae5633462a55ea12e5b"
+          }
+        },
+        {
           "client_id": "733413672934-pu0q6ce8p5obhkcqt82riaagqrhoutct.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -31,3 +31,8 @@ yarn-error.log*
 .eslintcache
 
 *storybook.log
+
+
+android/release.jks
+android/release.jks.base64
+android/release.pwd
