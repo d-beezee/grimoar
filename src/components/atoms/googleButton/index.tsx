@@ -54,13 +54,15 @@ const GoogleButtonComponent = styled.button`
 const GoogleButton = ({
   onClick,
   disabled,
+  children,
 }: {
   onClick?: () => void;
   disabled?: boolean;
+  children?: React.ReactNode;
 }) => {
   return (
     <GoogleButtonComponent onClick={onClick} disabled={disabled}>
-      Sign in with Google
+      {children || "Sign in with Google"}
     </GoogleButtonComponent>
   );
 };

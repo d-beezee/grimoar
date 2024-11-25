@@ -1,4 +1,5 @@
-import { IonAlert, IonButton, IonImg, IonPage } from "@ionic/react";
+import { IonAlert, IonImg, IonPage } from "@ionic/react";
+import { GoogleButton } from "@src/components/atoms/googleButton";
 import { Signin } from "@src/components/molecules/signin";
 import { LogPage } from "@src/components/templates/LogPage";
 import React, { useState } from "react";
@@ -71,13 +72,21 @@ const Login: React.FC = () => {
             />
             <IonImg src={Image} />
             <div style={{ padding: "0 30px" }}>
-              <IonButton
-                onClick={() => {
-                  loginWithGoogle();
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "20px",
                 }}
               >
-                Login with Google
-              </IonButton>
+                <GoogleButton
+                  onClick={() => {
+                    loginWithGoogle();
+                  }}
+                >
+                  Login with Google
+                </GoogleButton>
+              </div>
               <Signin disabled={isSubmitting} onSignin={handleLogin} />
             </div>
           </div>

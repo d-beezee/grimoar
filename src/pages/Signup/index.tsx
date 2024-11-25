@@ -1,9 +1,11 @@
 import { IonAlert, IonImg, IonPage } from "@ionic/react";
+import { GoogleButton } from "@src/components/atoms/googleButton";
 import { Signup as SignupForm } from "@src/components/molecules/signup";
 import { LogPage } from "@src/components/templates/LogPage";
 import React, { useState } from "react";
 import NotLoggedIn from "../../components/NotLoggedIn";
 import { usePostRegisterMutation } from "../../features/api";
+import { useGoogleLogin } from "../Login/googleLogin";
 import Image from "./assets/Image.jpg";
 
 function validateEmail(email: string) {
@@ -15,6 +17,8 @@ const Signup: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [iserror, setIserror] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+
+  const { loginWithGoogle } = useGoogleLogin();
   const [register] = usePostRegisterMutation();
   const handleLogin = async (email: string, password: string) => {
     if (!email) {
@@ -68,6 +72,21 @@ const Signup: React.FC = () => {
             />
             <IonImg src={Image} />
             <div style={{ padding: "0 30px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "20px",
+                }}
+              >
+                <GoogleButton
+                  onClick={() => {
+                    loginWithGoogle();
+                  }}
+                >
+                  Signup with Google
+                </GoogleButton>
+              </div>
               <SignupForm disabled={isSubmitting} onSignup={handleLogin} />
             </div>
           </div>
