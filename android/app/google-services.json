@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "733413672934",
+    "project_id": "grimoar-0",
+    "storage_bucket": "grimoar-0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733413672934:android:b24fd99fcf1af04eb4b827",
+        "android_client_info": {
+          "package_name": "com.clochard.grimoar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733413672934-flkbf9acjgpcikfif4uejf5lnjcfm58k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clochard.grimoar",
+            "certificate_hash": "d377d4e0afac4c038c72c6f5094e4b45f99610a0"
+          }
+        },
+        {
+          "client_id": "733413672934-rdga3bv3qin6rrdou2ko9am6gr01suo4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clochard.grimoar",
+            "certificate_hash": "4c235b6bc5fd0adfcf10d081db59b207bdd72cdc"
+          }
+        },
+        {
+          "client_id": "733413672934-pu0q6ce8p5obhkcqt82riaagqrhoutct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8TeomqnAFZl3NjniGGtc854TfrwkquzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733413672934-pu0q6ce8p5obhkcqt82riaagqrhoutct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

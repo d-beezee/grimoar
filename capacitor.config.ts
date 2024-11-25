@@ -5,10 +5,9 @@ const config: CapacitorConfig = {
   appName: "Grimoar",
   webDir: "dist",
   plugins: {
-    GoogleAuth: {
-      scopes: ["profile", "email"],
-      serverClientId:
-        "976308014328-c5sjeutgm9bcjk289hm1khihjkmpc6c5.apps.googleusercontent.com",
+    FirebaseAuthentication: {
+      skipNativeAuth: false,
+      providers: ["google.com"],
     },
   },
 };

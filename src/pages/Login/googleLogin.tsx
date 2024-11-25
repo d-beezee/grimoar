@@ -1,14 +1,16 @@
-import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { usePostAuthGoogleMutation } from "@src/features/api";
 
 export const useGoogleLogin = () => {
   const [login] = usePostAuthGoogleMutation();
+
   const loginWithGoogle = async () => {
-    await GoogleAuth.signIn();
-    const google = await GoogleAuth.refresh();
-    if (google && google.accessToken) {
+    const google = await FirebaseAuthentication.signInWithGoogle();
+    // await GoogleAuth.signIn();
+    // const google = await GoogleAuth.refresh();
+    if (google && google.credential && google.credential.accessToken) {
       const res = await login({
-        body: { accessToken: google.accessToken },
+        body: { accessToken: google.credential.accessToken },
       }).unwrap();
 
       if (res.token) {
