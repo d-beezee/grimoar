@@ -1,4 +1,4 @@
-import { IonAlert, IonImg, IonPage } from "@ionic/react";
+import { IonAlert, IonImg, IonPage, useIonLoading } from "@ionic/react";
 import { GoogleButton } from "@src/components/atoms/googleButton";
 import { Signin } from "@src/components/molecules/signin";
 import { LogPage } from "@src/components/templates/LogPage";
@@ -18,6 +18,8 @@ const Login: React.FC = () => {
   const [iserror, setIserror] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [login] = usePostAuthPasswordMutation();
+  const [present, dismiss] = useIonLoading();
+
   const { loginWithGoogle } = useGoogleLogin();
   const handleLogin = async (email: string, password: string) => {
     if (!email) {
@@ -42,6 +44,9 @@ const Login: React.FC = () => {
       password: password,
     };
 
+    present({
+      message: "Signing in...",
+    });
     setIsSubmitting(true);
     login({ body: loginData })
       .unwrap()
@@ -52,6 +57,7 @@ const Login: React.FC = () => {
       })
       .finally(() => {
         setIsSubmitting(false);
+        dismiss();
       });
   };
 
@@ -81,7 +87,11 @@ const Login: React.FC = () => {
               >
                 <GoogleButton
                   onClick={() => {
+                    present({
+                      message: "Signing in...",
+                    });
                     loginWithGoogle();
+                    dismiss();
                   }}
                 >
                   Login with Google

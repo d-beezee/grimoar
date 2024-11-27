@@ -1,4 +1,4 @@
-import { IonAlert, IonImg, IonPage } from "@ionic/react";
+import { IonAlert, IonImg, IonPage, useIonLoading } from "@ionic/react";
 import { GoogleButton } from "@src/components/atoms/googleButton";
 import { Signup as SignupForm } from "@src/components/molecules/signup";
 import { LogPage } from "@src/components/templates/LogPage";
@@ -17,6 +17,7 @@ const Signup: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [iserror, setIserror] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const [present, dismiss] = useIonLoading();
 
   const { loginWithGoogle } = useGoogleLogin();
   const [register] = usePostRegisterMutation();
@@ -42,7 +43,9 @@ const Signup: React.FC = () => {
       email: email,
       password: password,
     };
-
+    present({
+      message: "Signing up...",
+    });
     setIsSubmitting(true);
     register({ body: loginData })
       .unwrap()
@@ -52,6 +55,7 @@ const Signup: React.FC = () => {
         setIserror(true);
       })
       .finally(() => {
+        dismiss();
         setIsSubmitting(false);
       });
   };
@@ -70,6 +74,7 @@ const Signup: React.FC = () => {
               message={message}
               buttons={["Dismiss"]}
             />
+
             <IonImg src={Image} />
             <div style={{ padding: "0 30px" }}>
               <div
@@ -81,7 +86,11 @@ const Signup: React.FC = () => {
               >
                 <GoogleButton
                   onClick={() => {
+                    present({
+                      message: "Signing up...",
+                    });
                     loginWithGoogle();
+                    dismiss();
                   }}
                 >
                   Signup with Google

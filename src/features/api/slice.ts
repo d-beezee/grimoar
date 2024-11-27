@@ -23,6 +23,17 @@ api.enhanceEndpoints({
         }
       },
     },
+
+    postRegister: {
+      async onQueryStarted(props, { queryFulfilled, dispatch }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setToken(data.token));
+        } catch {
+          dispatch(clearToken());
+        }
+      },
+    },
   },
 });
 
