@@ -13,7 +13,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "run:android": "ionic capacitor run android -l --external",
-    "preview:android": "ionic capacitor run android"
+    "preview:android": "ionic capacitor run android",
+    "release": "yarn build && npx cap copy && npx cap update && npx cap open android"
   },
   "dependencies": {
     "@capacitor-firebase/authentication": "^6.2.0",
