@@ -3,6 +3,7 @@ import { MovieCard } from "@src/components/molecules/moviecard";
 import { MainPage } from "@src/components/templates/MainPage";
 import { Title } from "@src/components/typography";
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useGetGamesQuery } from "../features/api";
 
@@ -39,9 +40,11 @@ const Dashboard: React.FC = () => {
             data &&
             data.length > 0 &&
             data.map((game) => (
-              <MovieCardWrapper key={game.name}>
-                <MovieCard movie={game} />
-              </MovieCardWrapper>
+              <Link to="/games/1">
+                <MovieCardWrapper key={game.name}>
+                  <MovieCard movie={game} />
+                </MovieCardWrapper>
+              </Link>
             ))}
         </div>
       </MainPage>

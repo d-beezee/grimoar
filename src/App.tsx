@@ -39,6 +39,7 @@ import { ThemeProvider } from "styled-components";
 import LoggedIn from "./components/LoggedIn";
 import NotLoggedIn from "./components/NotLoggedIn";
 import Home from "./pages/Home";
+import Single from "./pages/Single";
 import { store } from "./store";
 import "./theme/variables.css";
 
@@ -83,6 +84,15 @@ const App: React.FC = () => (
                 <NotLoggedIn>
                   <Home {...props} />
                 </NotLoggedIn>
+              )}
+              exact={true}
+            />
+            <Route
+              path="/games/:id"
+              component={(props: any) => (
+                <LoggedIn>
+                  <Single {...props} />
+                </LoggedIn>
               )}
               exact={true}
             />
