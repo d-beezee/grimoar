@@ -41,6 +41,7 @@ import NotLoggedIn from "./components/NotLoggedIn";
 import Home from "./pages/Home";
 import Single from "./pages/Single";
 import { store } from "./store";
+import "./theme/reset.css";
 import "./theme/variables.css";
 
 setupIonicReact();
