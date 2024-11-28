@@ -52,6 +52,9 @@ const injectedRtkApi = api.injectEndpoints({
     getGames: build.query<GetGamesApiResponse, GetGamesApiArg>({
       query: () => ({ url: `/games` }),
     }),
+    getGamesById: build.query<GetGamesByIdApiResponse, GetGamesByIdApiArg>({
+      query: (queryArg) => ({ url: `/games/${queryArg.id}` }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -102,14 +105,24 @@ export type PostRegisterApiArg = {
     password: string;
   };
 };
-export type GetGamesApiResponse = /** status 200 OK */ {
+export type GetGamesApiResponse = /** status 200 OK */ GameBase[];
+export type GetGamesApiArg = void;
+export type GetGamesByIdApiResponse = /** status 200 OK */ GameBase & {
+  fullImage: string;
+  longDescription?: string;
+  tags?: string[];
+  publisher: string;
+};
+export type GetGamesByIdApiArg = {
+  id: string;
+};
+export type GameBase = {
   name: string;
   description: string;
   year: number;
   image: string;
   vote?: number;
-}[];
-export type GetGamesApiArg = void;
+};
 export const {
   use$getQuery,
   useGetProtectedQuery,
@@ -119,4 +132,5 @@ export const {
   useGetRefreshQuery,
   usePostRegisterMutation,
   useGetGamesQuery,
+  useGetGamesByIdQuery,
 } = injectedRtkApi;

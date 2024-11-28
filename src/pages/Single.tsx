@@ -1,33 +1,52 @@
 import { IonPage } from "@ionic/react";
 import { FullPage } from "@src/components/templates/FullPage";
-import { Title } from "@src/components/typography";
 import React from "react";
 import styled from "styled-components";
-import { useGetGamesQuery } from "../features/api";
+import { useGetGamesByIdQuery } from "../features/api";
 
-const MovieCardWrapper = styled.div`
+const ImageWrapper = styled.div`
+  max-height: 240px;
   display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grey600};
+  justify-content: center;
+  background: #000;
+  position: relative;
 
-  &:last-child {
-    border-bottom: none;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px; /* Altezza dell'ombra */
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    pointer-events: none; /* L'ombra non interferisce con i clic */
+  }
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
   }
 `;
 
-const TitleWrapper = styled.h1`
-  ${({ theme }) => Title(theme)}
-  color: #fff;
-  margin: 0;
-`;
-
 const Single: React.FC = () => {
-  const { data, isLoading, isError, error } = useGetGamesQuery();
+  const { data, isLoading, isError, error } = useGetGamesByIdQuery({
+    id: "673f93271fd83bd6e538e168",
+  });
 
   return (
     <IonPage>
-      <FullPage>Hello</FullPage>
+      <FullPage>
+        <ImageWrapper>
+          <img src={data?.fullImage} alt={data?.name} />
+        </ImageWrapper>
+        <div style={{ color: "#fff" }}>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      </FullPage>
     </IonPage>
   );
 };
