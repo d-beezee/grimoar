@@ -1,6 +1,5 @@
 import { Avatar } from "@src/components/atoms/avatar";
 import { MenuItem } from "@src/components/atoms/menuitem";
-import { useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 import LogoImage from "./assets/Logo.png";
 
@@ -34,6 +33,16 @@ const Logo = styled.img`
   right: 0;
 `;
 
+const Overlay = styled.div<{ isOpen: boolean }>`
+  ${({ isOpen }) => (isOpen ? "display: block;" : "display: none;")}
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 400;
+`;
+
 Logo.defaultProps = {
   src: LogoImage,
   alt: "logo",
@@ -57,44 +66,25 @@ const Sidebar = ({
   user: { name: string; avatar: string };
   items: Item[];
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (
-        isOpen &&
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-        event.stopPropagation();
-        event.preventDefault();
-      }
-    },
-    [isOpen],
-  );
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
   return (
-    <Wrapper ref={wrapperRef} slot="fixed" isOpen={isOpen}>
-      <Avatar src={avatar} size="large">
-        {name}
-      </Avatar>
+    <>
+      <Wrapper slot="fixed" isOpen={isOpen}>
+        <Avatar src={avatar} size="large">
+          {name}
+        </Avatar>
 
-      <Menu>
-        {items.map((item) => (
-          <MenuItem key={item.key} icon={item.icon} onClick={item.onClick}>
-            {item.name}
-          </MenuItem>
-        ))}
-      </Menu>
+        <Menu>
+          {items.map((item) => (
+            <MenuItem key={item.key} icon={item.icon} onClick={item.onClick}>
+              {item.name}
+            </MenuItem>
+          ))}
+        </Menu>
 
-      <Logo />
-    </Wrapper>
+        <Logo />
+      </Wrapper>
+      <Overlay slot="fixed" isOpen={isOpen} onClick={() => setIsOpen(false)} />
+    </>
   );
 };
 
