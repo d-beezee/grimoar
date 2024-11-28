@@ -10,24 +10,24 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `;
 
-const BackButton = styled.div``;
+const BackButton = styled.div`
+  top: 50px;
+  left: 25px;
+  .back-button {
+    background: #fff;
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: #000;
+  }
+`;
 
 export const FullPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <IonContent fullscreen>
       <BackButton slot="fixed">
-        <IonBackButton
-          style={{
-            top: 30,
-            left: 25,
-            background: "#fff",
-            display: "block",
-            width: "26px",
-            height: "26px",
-            borderRadius: "50%",
-            color: "#000",
-          }}
-        />
+        <IonBackButton className="back-button" />
       </BackButton>
       <Wrapper>{children}</Wrapper>
     </IonContent>
