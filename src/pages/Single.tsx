@@ -34,6 +34,12 @@ const ImageWrapper = styled.div`
   }
 `;
 
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 const Single: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, isError, error } = useGetGamesByIdQuery({
@@ -47,11 +53,13 @@ const Single: React.FC = () => {
   return (
     <IonPage>
       <FullPage>
-        <ImageWrapper>
-          <img src={data?.fullImage} alt={data?.name} />
-        </ImageWrapper>
-        <MovieCardDetail movie={data} />
-        <div>{data.longDescription}</div>
+        <Content>
+          <ImageWrapper>
+            <img src={data?.fullImage} alt={data?.name} />
+          </ImageWrapper>
+          <MovieCardDetail movie={data} />
+          <div>{data.longDescription}</div>
+        </Content>
       </FullPage>
     </IonPage>
   );
