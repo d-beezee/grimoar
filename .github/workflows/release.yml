@@ -59,7 +59,7 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
           packageName: com.clochard.grimoar
           releaseFiles: android/app/build/outputs/bundle/release/app-release.aab
-          track: qa
+          track: internal
 
 
 
