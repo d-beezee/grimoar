@@ -40,12 +40,12 @@ jobs:
           
       - name: Extract Android signing key from env
         run: |
-          echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
-          base64 -d android/release.jks.base64 > android/release.decrypted.jks
+          echo "${{ secrets.RELEASE_KEYSTORE }}" > android/app/release.jks.base64
+          base64 -d android/app/release.jks.base64 > android/app/release.decrypted.jks
 
       - name: Bundle release
         env:
-          KEYSTORE_FILE: android/release.decrypted.jks
+          KEYSTORE_FILE: release.decrypted.jks
           KEY_ALIAS: grimoar
           KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
