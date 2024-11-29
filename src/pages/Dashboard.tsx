@@ -40,7 +40,7 @@ const Dashboard: React.FC = () => {
             data &&
             data.length > 0 &&
             data.map((game) => (
-              <Link to="/games/1">
+              <Link to={`/games/${game.id}`}>
                 <MovieCardWrapper key={game.name}>
                   <MovieCard movie={game} />
                 </MovieCardWrapper>

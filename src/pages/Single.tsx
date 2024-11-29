@@ -1,6 +1,8 @@
 import { IonPage } from "@ionic/react";
+import { MovieCardDetail } from "@src/components/molecules/moviecardDetail";
 import { FullPage } from "@src/components/templates/FullPage";
 import React from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 import { useGetGamesByIdQuery } from "../features/api";
 
@@ -33,9 +35,14 @@ const ImageWrapper = styled.div`
 `;
 
 const Single: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
   const { data, isLoading, isError, error } = useGetGamesByIdQuery({
-    id: "673f93271fd83bd6e538e168",
+    id,
   });
+
+  if (isLoading || !data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <IonPage>
@@ -43,9 +50,8 @@ const Single: React.FC = () => {
         <ImageWrapper>
           <img src={data?.fullImage} alt={data?.name} />
         </ImageWrapper>
-        <div style={{ color: "#fff" }}>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
+        <MovieCardDetail movie={data} />
+        <div>{data.longDescription}</div>
       </FullPage>
     </IonPage>
   );

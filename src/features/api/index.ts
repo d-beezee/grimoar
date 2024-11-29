@@ -117,6 +117,7 @@ export type GetGamesByIdApiArg = {
   id: string;
 };
 export type GameBase = {
+  id: string;
   name: string;
   description: string;
   year: number;
