@@ -32,7 +32,7 @@ jobs:
         uses: ults-io/mobile-version-bump-action@v2
         with:
           android-project-path: ./android 
-          app-version: ${{ github.ref_name }}
+          app-version:         versionCode "${{ github.ref_name }}"
 
       - name: Check bumped version
         run: |
