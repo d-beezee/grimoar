@@ -34,6 +34,10 @@ jobs:
           android-project-path: ./android 
           app-version: ${{ github.ref_name }}
 
+      - name: Check bumped version
+        run: |
+          cat android/app/build.gradle
+          
       - name: Extract Android signing key from env
         run: |
           echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
