@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { fn } from "@storybook/test";
 import { ReviewCard } from ".";
 
 const meta = {
@@ -12,6 +13,7 @@ const meta = {
     user: {
       avatar: "https://place-hold.it/100x100",
     },
+    onVote: fn(),
   },
   decorators: [
     (Story) => (

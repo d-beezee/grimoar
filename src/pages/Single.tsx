@@ -1,5 +1,6 @@
 import { IonPage } from "@ionic/react";
 import { MovieCardDetail } from "@src/components/molecules/moviecardDetail";
+import { ReviewCard } from "@src/components/molecules/reviewCard";
 import { FullPage } from "@src/components/templates/FullPage";
 import React from "react";
 import { useParams } from "react-router";
@@ -59,6 +60,13 @@ const Single: React.FC = () => {
           </ImageWrapper>
           <MovieCardDetail movie={data} />
           <div>{data.longDescription}</div>
+          <div>
+            <ReviewCard
+              user={{
+                avatar: "https://place-hold.it/100x100",
+              }}
+            />
+          </div>
         </Content>
       </FullPage>
     </IonPage>
