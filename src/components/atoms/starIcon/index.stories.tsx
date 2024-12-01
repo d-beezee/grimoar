@@ -24,3 +24,10 @@ export const Active: Story = {
     active: true,
   },
 };
+
+export const Half: Story = {
+  args: {
+    active: true,
+    percent: 50,
+  },
+};
