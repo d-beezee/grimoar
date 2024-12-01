@@ -24,11 +24,11 @@ const Base = styled.div`
 
 export type GraphProps = {
   distribution: {
-    1: number;
-    2: number;
-    3: number;
-    4: number;
-    5: number;
+    1?: number;
+    2?: number;
+    3?: number;
+    4?: number;
+    5?: number;
   };
 };
 
@@ -38,11 +38,31 @@ const Graph = ({ distribution }: GraphProps) => {
   return (
     <Wrapper>
       <Columns>
-        <Column style={{ height: `${(100 * distribution[1]) / max}%` }} />
-        <Column style={{ height: `${(100 * distribution[2]) / max}%` }} />
-        <Column style={{ height: `${(100 * distribution[3]) / max}%` }} />
-        <Column style={{ height: `${(100 * distribution[4]) / max}%` }} />
-        <Column style={{ height: `${(100 * distribution[5]) / max}%` }} />
+        <Column
+          style={{
+            height: distribution[1] ? `${(100 * distribution[1]) / max}%` : "0",
+          }}
+        />
+        <Column
+          style={{
+            height: distribution[2] ? `${(100 * distribution[2]) / max}%` : "0",
+          }}
+        />
+        <Column
+          style={{
+            height: distribution[3] ? `${(100 * distribution[3]) / max}%` : "0",
+          }}
+        />
+        <Column
+          style={{
+            height: distribution[4] ? `${(100 * distribution[4]) / max}%` : "0",
+          }}
+        />
+        <Column
+          style={{
+            height: distribution[5] ? `${(100 * distribution[5]) / max}%` : "0",
+          }}
+        />
       </Columns>
       <Base />
     </Wrapper>

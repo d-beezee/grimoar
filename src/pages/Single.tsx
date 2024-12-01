@@ -1,5 +1,6 @@
 import { IonPage } from "@ionic/react";
 import { MovieCardDetail } from "@src/components/molecules/moviecardDetail";
+import { MovieRating } from "@src/components/molecules/movieRating";
 import { ReviewCard } from "@src/components/molecules/reviewCard";
 import { FullPage } from "@src/components/templates/FullPage";
 import React from "react";
@@ -68,6 +69,12 @@ const Review = ({ id }: { id: string }) => {
   );
 };
 
+const Separator = styled.hr`
+  background: ${({ theme }) => theme.colors.grey600};
+  height: 1px;
+  margin: 0;
+`;
+
 const Single: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, isError, error } = useGetGamesByIdQuery({
@@ -87,6 +94,14 @@ const Single: React.FC = () => {
           </ImageWrapper>
           <MovieCardDetail movie={data} />
           <div>{data.longDescription}</div>
+          <div>{JSON.stringify(data)}</div>
+          {data.voteDistribution && (
+            <MovieRating
+              average={data.vote}
+              distribution={data.voteDistribution}
+            />
+          )}
+          <Separator />
           <Review id={id} />
         </Content>
       </FullPage>

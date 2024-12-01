@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Stars } from "../stars";
 
 type MovieRatingProps = GraphProps & {
-  average: number;
+  average?: number;
 };
 
 const Wrapper = styled.div`
@@ -52,7 +52,7 @@ const MovieRating = ({ average, distribution }: MovieRatingProps) => {
           <Graph distribution={distribution} />
         </div>
         <AverageWrapper>
-          <div className="average">{average.toFixed(1)}</div>
+          <div className="average">{average ? average.toFixed(1) : "N/A"}</div>
           <Stars rating={5} />
         </AverageWrapper>
       </GraphWrapper>
