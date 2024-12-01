@@ -63,7 +63,6 @@ jobs:
           packageName: com.clochard.grimoar
           releaseFiles: android/app/build/outputs/bundle/release/app-release.aab
           track: alpha
-          changesNotSentForReview: true
 
 
       - run: |
