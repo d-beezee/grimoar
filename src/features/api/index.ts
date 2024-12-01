@@ -55,6 +55,28 @@ const injectedRtkApi = api.injectEndpoints({
     getGamesById: build.query<GetGamesByIdApiResponse, GetGamesByIdApiArg>({
       query: (queryArg) => ({ url: `/games/${queryArg.id}` }),
     }),
+    deleteUsersMe: build.mutation<
+      DeleteUsersMeApiResponse,
+      DeleteUsersMeApiArg
+    >({
+      query: () => ({ url: `/users/me`, method: "DELETE" }),
+    }),
+    postGamesByIdVotes: build.mutation<
+      PostGamesByIdVotesApiResponse,
+      PostGamesByIdVotesApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/games/${queryArg.id}/votes`,
+        method: "POST",
+        body: queryArg.body,
+      }),
+    }),
+    getGamesByIdVotes: build.query<
+      GetGamesByIdVotesApiResponse,
+      GetGamesByIdVotesApiArg
+    >({
+      query: (queryArg) => ({ url: `/games/${queryArg.id}/votes` }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -116,13 +138,33 @@ export type GetGamesByIdApiResponse = /** status 200 OK */ GameBase & {
 export type GetGamesByIdApiArg = {
   id: string;
 };
+export type DeleteUsersMeApiResponse = /** status 200 OK */ {
+  message?: string;
+};
+export type DeleteUsersMeApiArg = void;
+export type PostGamesByIdVotesApiResponse = /** status 201 Created */ {
+  vote: Vote;
+};
+export type PostGamesByIdVotesApiArg = {
+  id: string;
+  body: {
+    vote: Vote;
+  };
+};
+export type GetGamesByIdVotesApiResponse = /** status 200 OK */ {
+  vote?: Vote;
+};
+export type GetGamesByIdVotesApiArg = {
+  id: string;
+};
+export type Vote = number;
 export type GameBase = {
   id: string;
   name: string;
   description: string;
   year: number;
   image: string;
-  vote?: number;
+  vote?: Vote;
 };
 export const {
   use$getQuery,
@@ -134,4 +176,7 @@ export const {
   usePostRegisterMutation,
   useGetGamesQuery,
   useGetGamesByIdQuery,
+  useDeleteUsersMeMutation,
+  usePostGamesByIdVotesMutation,
+  useGetGamesByIdVotesQuery,
 } = injectedRtkApi;

@@ -3,6 +3,12 @@ import { api } from ".";
 
 api.enhanceEndpoints({
   endpoints: {
+    postGamesByIdVotes: {
+      invalidatesTags: ["Votes"],
+    },
+    getGamesByIdVotes: {
+      providesTags: ["Votes"],
+    },
     postAuthPassword: {
       async onQueryStarted(props, { queryFulfilled, dispatch }) {
         try {
