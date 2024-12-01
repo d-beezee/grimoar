@@ -1,5 +1,24 @@
 import { StarIcon } from "@src/components/atoms/starIcon";
 
+const Star = ({
+  intRating,
+  decRating,
+  value,
+}: {
+  intRating: number;
+  decRating: number;
+  value: number;
+}) => {
+  return (
+    <StarIcon
+      active={
+        intRating > value - 1 || (intRating === value - 1 && decRating > 0)
+      }
+      percent={intRating === value - 1 ? decRating : undefined}
+    />
+  );
+};
+
 const Stars = ({
   rating,
   onClick,
@@ -7,28 +26,15 @@ const Stars = ({
   rating: number;
   onClick?: (rating: number) => Promise<void>;
 }) => {
+  const intRating = Math.trunc(rating);
+  const decRating = (rating - intRating) * 100;
   return (
     <div style={{ display: "flex" }}>
-      <StarIcon
-        onClick={onClick ? () => onClick(1) : undefined}
-        active={rating > 0}
-      />
-      <StarIcon
-        onClick={onClick ? () => onClick(2) : undefined}
-        active={rating > 1}
-      />
-      <StarIcon
-        onClick={onClick ? () => onClick(3) : undefined}
-        active={rating > 2}
-      />
-      <StarIcon
-        onClick={onClick ? () => onClick(4) : undefined}
-        active={rating > 3}
-      />
-      <StarIcon
-        onClick={onClick ? () => onClick(5) : undefined}
-        active={rating > 4}
-      />
+      <Star intRating={intRating} decRating={decRating} value={1} />
+      <Star intRating={intRating} decRating={decRating} value={2} />
+      <Star intRating={intRating} decRating={decRating} value={3} />
+      <Star intRating={intRating} decRating={decRating} value={4} />
+      <Star intRating={intRating} decRating={decRating} value={5} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { Info, Text, TitleSmall } from "@src/components/typography";
 import styled from "styled-components";
+import { Stars } from "../stars";
 
 export interface MovieCardProps {
   movie: {
@@ -7,6 +8,7 @@ export interface MovieCardProps {
     description: string;
     year: number;
     image: string;
+    vote?: number;
   };
 }
 
@@ -41,6 +43,10 @@ const DescriptionWrapper = styled.div`
   }
 `;
 
+const StarsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
     <Wrapper>
@@ -48,6 +54,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         <div className="main">{movie.name}</div>
         <div className="sub">{movie.year}</div>
       </Title>
+      <StarsWrapper>
+        <Stars rating={movie.vote || 0} />
+      </StarsWrapper>
       <DescriptionWrapper>
         <div>
           <img src={movie.image} />

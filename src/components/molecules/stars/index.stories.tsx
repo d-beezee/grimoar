@@ -36,6 +36,11 @@ export const Three: Story = {
     rating: 3,
   },
 };
+export const ThreePointFive: Story = {
+  args: {
+    rating: 3.5,
+  },
+};
 export const Four: Story = {
   args: {
     rating: 4,
