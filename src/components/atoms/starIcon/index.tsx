@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { ReactComponent as Star } from "./assets/star.svg";
+import { ReactComponent as Thumb } from "./assets/thumb.svg";
+
+export const ICON_TYPES = ["star", "thumb"] as const;
 
 const Wrapper = styled.div<{ active?: boolean; percent?: number }>`
   position: relative;
@@ -26,15 +29,18 @@ const StarIcon = ({
   active,
   percent,
   onClick,
+  kind = "star",
 }: {
   active?: boolean;
   percent?: number;
   onClick?: () => Promise<void>;
+  kind?: (typeof ICON_TYPES)[number];
 }) => {
+  const Icon = kind === "star" ? Star : Thumb;
   return (
     <Wrapper active={active} percent={percent} onClick={onClick}>
-      <Star />
-      {active && <Star className="fill" />}
+      <Icon />
+      {active && <Icon className="fill" />}
     </Wrapper>
   );
 };

@@ -30,7 +30,7 @@ const ReviewCard = ({ vote, user, onVote }: ReviewCardProps) => {
     <BarCard>
       <Wrapper>
         <AvatarImage src={user.avatar} size="medium" />
-        {vote && <div className="reviewWrapper">You’ve reviewed this film</div>}
+        {vote && <div className="reviewWrapper">You’ve reviewed this game</div>}
         <Stars
           rating={vote || 0}
           onClick={onVote ? (rating) => onVote(rating) : undefined}

@@ -9,6 +9,9 @@ api.enhanceEndpoints({
     getGamesByIdVotes: {
       providesTags: ["Votes"],
     },
+    getGames: {
+      providesTags: ["Votes"],
+    },
     postAuthPassword: {
       async onQueryStarted(props, { queryFulfilled, dispatch }) {
         try {

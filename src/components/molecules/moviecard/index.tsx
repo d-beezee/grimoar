@@ -55,7 +55,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         <div className="sub">{movie.year}</div>
       </Title>
       <StarsWrapper>
-        <Stars rating={movie.vote || 0} />
+        <Stars kind="thumb" rating={movie.vote || 0} />
       </StarsWrapper>
       <DescriptionWrapper>
         <div>

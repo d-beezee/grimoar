@@ -20,6 +20,11 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
 };
+export const Thumbs: Story = {
+  args: {
+    kind: "thumb",
+  },
+};
 
 export const One: Story = {
   args: {
