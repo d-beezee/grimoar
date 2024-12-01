@@ -30,3 +30,9 @@ export const InfoSmall = (theme: DefaultTheme) => css`
   font-size: 12px;
   line-height: 100%;
 `;
+
+export const InfoLarge = (theme: DefaultTheme) => css`
+  font-family: ${theme.typography.fontFamily.secondary};
+  font-size: 32px;
+  line-height: 100%;
+`;
