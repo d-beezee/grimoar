@@ -7,6 +7,7 @@ const theme = {
     accent: "#D88373",
     grey600: "#A3A3A3",
     background: "#1A0029",
+    backgroundSecondary: "#3D0060",
   },
   typography: {
     fontFamily: {

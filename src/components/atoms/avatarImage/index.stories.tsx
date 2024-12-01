@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar } from ".";
-import { AVATAR_SIZES } from "../avatarImage";
+import { AVATAR_SIZES, AvatarImage } from ".";
 
 const meta = {
-  title: "Atoms/Avatar",
-  component: Avatar,
+  title: "Atoms/AvatarImage",
+  component: AvatarImage,
   parameters: {
     layout: "centered",
     backgrounds: {
@@ -20,32 +19,20 @@ const meta = {
   },
   args: {
     src: "https://place-hold.it/100x100",
-    children: "james",
   },
-} satisfies Meta<typeof Avatar>;
+} satisfies Meta<typeof AvatarImage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Left: Story = {
-  args: {},
-};
-
-export const Right: Story = {
+export const Small: Story = {
   args: {
-    align: "right",
+    size: "medium",
   },
 };
 
-export const LargeLeft: Story = {
+export const Large: Story = {
   args: {
     size: "large",
-  },
-};
-
-export const LargeRight: Story = {
-  args: {
-    size: "large",
-    align: "right",
   },
 };

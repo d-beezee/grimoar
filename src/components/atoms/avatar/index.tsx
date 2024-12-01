@@ -1,13 +1,9 @@
 import { Info, InfoSmall } from "@src/components/typography";
 import React from "react";
 import styled from "styled-components";
+import { AVATAR_SIZES, AvatarImage } from "../avatarImage";
 
-export const AVATAR_SIZES = ["medium", "large"] as const;
 export const AVATAR_ALIGN = ["left", "right"] as const;
-
-const AvatarImage = styled.img`
-  border-radius: 50%;
-`;
 
 const Wrapper = styled.div<{ size: (typeof AVATAR_SIZES)[number] }>`
   display: flex;
@@ -25,20 +21,6 @@ const Wrapper = styled.div<{ size: (typeof AVATAR_SIZES)[number] }>`
     }
   }}
 
-  ${({ size }) => {
-    switch (size) {
-      case "large":
-        return `${AvatarImage} {
-            width: 70px;
-            height: 70px;
-        }`;
-      default:
-        return `${AvatarImage} {
-            width: 30px;
-            height: 30px;
-        }`;
-    }
-  }}
   ${({ size, theme }) => {
     switch (size) {
       case "large":
@@ -60,7 +42,7 @@ const Avatar = ({
   size?: (typeof AVATAR_SIZES)[number];
   align?: (typeof AVATAR_ALIGN)[number];
 }) => {
-  const Image = <AvatarImage src={src} />;
+  const Image = <AvatarImage src={src} size={size} />;
   return (
     <Wrapper size={size}>
       {align === "left" ? Image : children}
